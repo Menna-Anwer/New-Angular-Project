@@ -1,0 +1,93 @@
+
+.container {
+    background: #774069;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    width: 500px;
+    padding: 20px;
+    margin: auto;
+}
+
+@media (max-width:500px) {
+    .container {
+        width: 100%;
+    }
+}
+
+.heading {
+    font-size: 2em;
+    margin-bottom: 0.5em
+}
+
+.box {
+    margin: 0.2em 0
+}
+
+.container .box p {
+    color: rgba(255, 255, 255, 0.701)
+}
+
+.container .box div {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 0.2em 0
+}
+
+.container .box input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #2c2a32;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding-left: 0.8em;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s
+}
+
+.container .box input:focus::placeholder {
+    color: #fff;
+    transition: all 0.3s
+}
+
+.container .box div::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 102%;
+    height: 105%;
+    border-radius: 10px;
+    background: linear-gradient(to right, #b6b281, #b88b83);
+}
+
+.loginBtn {
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    background: linear-gradient(to right, #b6b281, #b88b83);
+    transition: all 0.3s;
+    border: none;
+}
+
+.loginBtn:hover {
+    box-shadow: 0 0 2px #171717 inset
+}
+
+.text {
+    font-size: 0.8em;
+    margin-top: 0.5em;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.625)
+}
+
+.text a {
+    color: rgba(255, 255, 255, 0.911)
+}

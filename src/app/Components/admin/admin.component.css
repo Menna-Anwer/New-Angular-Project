@@ -1,0 +1,152 @@
+nav {
+    z-index: 999;
+}
+
+.search {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px 10px 50px;
+
+}
+
+.ser {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.ser svg {
+    position: absolute;
+    color: #919875;
+    z-index: 1;
+    height: 50%;
+    margin-left: 15px;
+    width: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.orders-details {
+    background-color: #f2f2f2;
+    color: black;
+    padding: 20px;
+    border: 1px solid rgb(72, 72, 72);
+    border-radius: 10px;
+    max-height: 700px;
+}
+
+.orders {
+    margin-bottom: 20px;
+}
+
+.order {
+    padding: 10px 20px;
+    align-items: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.order input {
+    width: 25%;
+    text-align: center;
+    padding: 6px 12px;
+}
+
+.order svg {
+    cursor: pointer;
+}
+
+.order .order-name {
+    width: 30%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.select {
+    padding: 10px 20px;
+    width: 50%;
+}
+
+input,
+textarea,
+select,
+button {
+    outline: none;
+}
+
+textarea {
+    font-size: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+.total-price {
+    font-size: 30px;
+}
+
+@media (max-width:500px) {
+    .order {
+        padding: 10px;
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    .ser {
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .order-submit {
+        width: 100% !important;
+    }
+
+}
+
+.latest {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.latest div {
+    padding: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.latest div img {
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: block;
+    margin-inline: auto;
+}
+
+.latest div::after {
+    position: absolute;
+    content: "$5";
+    top: 0;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    background-color: #ddd;
+    border-radius: 50%;
+    padding: 7px;
+    color: black;
+}
+
+.latest div h6 {
+    color: black;
+    margin-top: 10px;
+}
+
+.menu {
+    background: #919875;
+    padding: 15px;
+    border-radius: 10px;
+}

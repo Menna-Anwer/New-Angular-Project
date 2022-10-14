@@ -1,0 +1,21 @@
+<div class="container p-md-5 p-4 ">
+    <form [formGroup]="userLoginForm" class="my-5 w-75 m-auto"  (ngSubmit)="login()">
+        <p class="heading">Sign in</p>
+    <div class="box">
+      <p>Email</p>
+      <div>
+        <input type="text" autocomplete="off" formControlName="email" name="email"  placeholder="Enter your email"/>
+      </div>
+    </div>
+    <div class="box">
+      <p>Password</p>
+      <div>
+        <input type="Password"autocomplete="off" formControlName="password" name="password" placeholder="Enter your password"/>
+      </div>
+    </div>
+    <button class="loginBtn p-3 my-3">Login</button>
+    <p class="text"><a href="#">Forgot Password</a></p>
+    <button type="button" class="btn btn-primary">Left</button>
+    </form>
+   
+  </div>

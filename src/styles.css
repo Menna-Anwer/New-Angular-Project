@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+/* Start Variables */
+:root {
+    --main-clr: #2f8f9d;
+    --light-clr: #fefbe9;
+    --alt-clr-r: #8b1059;
+    --alt-clr-d: #2c2a32;
+    --alt-clr-p: #4c3a69;
+    --ylw-clr: #ffc400;
+    --sect-clr: #eff7fa;
+    --whi-clr: #fff;
+    --norm-clr: #000;
+    --main-dur: 0.3s all ease;
+    --alt-dur: 0.4s all ease-in-out;
+    --cur-po: pointer;
+}
+
+/* End Variables */
+/* Start Reset  */
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    color: gold;
+    background-color: rgb(58, 58, 58);
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--alt-clr-d);
+}
+main .container {
+    color: white !important;
+}
+
+input,
+textarea,
+select,
+button {
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
