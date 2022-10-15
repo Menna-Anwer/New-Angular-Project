@@ -6,7 +6,22 @@
     flex-basis: 60%;
     background-color: #eee;
 }
- 
+ label{
+    font-size: 25px;
+ }
+.modal-content{
+    background-color: #5e9ebd;
+    border-radius: 3px;
+}
+
+.btn-add{
+    background-color: #5e9ebd;
+    width: 20%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 select {
     border: none;
@@ -15,9 +30,19 @@ select {
     padding: 8px 15px;
     background-color: #eee;
 }
-
+.btn1{
+    background-color: #2204fa !important;
+    border-radius: 5px !important;
+   
+}
+.btn2{
+    
+    background-color: #7f0606!important;
+    border-radius: 5px !important;
+    
+}
 input:focus {
-    box-shadow: inset 0 0 7px rgba(0 0 0 / 40%);
+    box-shadow: inset 0 0 7px rgba(14, 13, 13, 0.758);
 }
 
 .modal-dialog{
@@ -68,6 +93,6 @@ form .btns input {
 }
 
 form .btns input:hover {
-    box-shadow: 0px 0px 5px #fff inset;
+    box-shadow: 0px 0px 5px rgb(206, 203, 203) inset;
     color: white;
 }
