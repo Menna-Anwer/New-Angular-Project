@@ -1,34 +1,49 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from './../../environments/environment.prod';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { IMapedUser } from '../interfaces/imaped-user';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
   headersOptions;
-  constructor(private HttpClient:HttpClient, private Router:Router) { 
+  users: BehaviorSubject<IMapedUser[]>;
+  selectedUser: BehaviorSubject<string>;
+  constructor(private httpClient:HttpClient, private router:Router) { 
     this.headersOptions = {
-
       headers: new HttpHeaders({
-
         'Content-Type': 'application/json'
-
       })
-
-    }
+    };
+    this.users = new BehaviorSubject<IMapedUser[]>([]);
+    this.selectedUser = new BehaviorSubject<string>('');
   }
-  login(user:any):void{
-     this.HttpClient.post(`${environment.AuthApi}/login`,JSON.stringify(user),{headers:new HttpHeaders({
-
+  login(user:any):Observable<any>{
+     return this.httpClient.post<any>(`${environment.AuthApi}/login`,JSON.stringify(user),{headers:new HttpHeaders({
       'Content-Type': 'application/json'
+    }),observe:"response"})
+  }
 
-    }),observe:"response"}).subscribe(value=>{
-   if(value.status==200){
-    localStorage.setItem("token",value.body?.toString()!)
-   }
+  getUsers(): void{
+    this.httpClient.get<IMapedUser[]>(`${environment.AuthApi}`).subscribe(value => {
+      this.users.next(value);
+      this.selectedUser.next(value[0].id);
+    })
+  }
 
-     })
+  allUsers(): BehaviorSubject<IMapedUser[]>{
+    return this.users;
+  }
+
+  getSelectedUser(): BehaviorSubject<string>{
+    return this.selectedUser;
+  }
+
+  setSelectedUser(id: string):void{
+    this.selectedUser.next(id);
+    
   }
 }

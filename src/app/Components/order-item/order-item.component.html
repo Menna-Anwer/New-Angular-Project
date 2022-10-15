@@ -1,0 +1,8 @@
+<div class="order d-flex gap-4">
+    <div class="order-name">{{item.name}}</div>
+    <input type="number" name="quantity" id="quantity" [(ngModel)]="item.quantity" (change)="changeQty()"/>
+    <fa-icon [icon]="faPlus" (click)="increase()"></fa-icon>
+    <div class="order-price">{{item.price}}</div>
+    <fa-icon [icon]="faMinus" (click)="decrease()"></fa-icon>
+    <fa-icon [icon]="faXmark" (click)="remove()"></fa-icon>
+  </div>

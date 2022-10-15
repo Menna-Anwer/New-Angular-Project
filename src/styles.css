@@ -38,7 +38,7 @@ html {
 
 body {
     font-family: "Roboto", sans-serif;
-    background-color: var(--alt-clr-d);
+    background-color: var(--alt-clr-d) !important;
 }
 main .container {
     color: white !important;
@@ -60,3 +60,5 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+html, body { height: 100%; }
+
