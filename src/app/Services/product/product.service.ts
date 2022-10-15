@@ -16,8 +16,6 @@ export class ProductService {
 
   getProducts():BehaviorSubject<IProduct[]>{
     this.httpclient.get<IProduct[]>(`${environment.ProductsApi}`).subscribe(value => {
-      console.log(55);
-      console.log(value);
       this.products.next(value);
     })
     return this.products;
