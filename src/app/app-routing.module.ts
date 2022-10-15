@@ -7,13 +7,11 @@ import { UserComponent } from './Components/user/user.component';
 
 const routes: Routes = [
   {path:"",component:LayoutComponent,children:[
-    {path: "", redirectTo: "Home", pathMatch: "full"},
-   {path:"Home",component:AdminComponent},
-   {path:"User",component:UserComponent},
+    {path: "", redirectTo: "home", pathMatch: "full"},
+   {path:"home",component:AdminComponent},
+   {path:"user",component:UserComponent},
   ]},
-  {path:"Login",component:LoginComponent},
- 
-  
+  {path:"login",component:LoginComponent},
 ];
 
 @NgModule({
