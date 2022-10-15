@@ -5,7 +5,7 @@
       <i class="fa-solid fa-magnifying-glass"></i>
       <input type="search" class="search" placeholder="Search" [(ngModel)]="searchVal" (input)="filterProducts()"/>
     </div>
-    <div class="row gap-4">
+    <div class="row gap-4 justify-content-between">
       <div class="col-12 col-lg-5 orders-details">
         <div class="orders">
           <app-order-item *ngFor="let item of orderItems" [item]="item"></app-order-item>
@@ -13,14 +13,6 @@
         <div class="order-notes">
           <h3>Notes</h3>
           <textarea class="d-block" name="" id=""></textarea>
-          <!-- <div class="selection d-flex justify-content-between align-items-center my-3">
-            <label for="room">Room: </label>
-            <select id="room" name="room" class="select">
-              <option value="combo">CompoBox</option>
-              <option value="milk">CompoBox</option>
-              <option value="lata">CompoBox</option>
-            </select>
-          </div> -->
           <div class="row justify-content-between">
             <div class="total-price text-center text-lg-start my-2 col-6"><strong>Total price </strong></div>
             <div class="total-price text-center text-lg-end my-2 col-6">{{totalPrice}}</div>
@@ -38,7 +30,7 @@
         <div class="menu-details">
           <div class="latest d-grid gap-1">
             <div class="card mycard"  *ngFor="let prod of products" (dblclick)="addOrderItem(prod)">
-              <img src="{{prod.image}}" alt="" />
+              <img src="http://localhost:8080/{{prod.image}}" alt="" />
               <h4>{{prod.name}}</h4>
               <div class="price">{{prod.price | currency:'EGP'}}</div>
             </div>

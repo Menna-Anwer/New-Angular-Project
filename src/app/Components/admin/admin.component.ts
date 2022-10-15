@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IOrderItem } from 'src/app/interfaces/iorder-item';
 import { IProduct } from 'src/app/interfaces/iproduct';
+import { AuthServiceService } from 'src/app/Services/auth-service.service';
 import { OrderService } from 'src/app/Services/order/order.service';
 import { ProductService } from 'src/app/Services/product/product.service';
 
@@ -17,7 +18,8 @@ export class AdminComponent implements OnInit {
   orderItems: IOrderItem[] = [];
   searchVal: string = '';
   totalPrice: number = 0;
-  constructor(private prodService: ProductService, private orderService: OrderService) { }
+  selectedUser: string = '';
+  constructor(private prodService: ProductService, private orderService: OrderService, private auth: AuthServiceService) { }
 
   ngOnInit(): void {
     this.prodService.getProducts().subscribe(value=>{
@@ -28,6 +30,9 @@ export class AdminComponent implements OnInit {
     })
     this.orderService.getTotalPrice().subscribe(value => {
       this.totalPrice = value;
+    });
+    this.auth.getSelectedUser().subscribe(value=>{
+      this.selectedUser = value;
     })
   }
 

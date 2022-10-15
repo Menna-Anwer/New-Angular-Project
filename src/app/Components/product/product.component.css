@@ -21,10 +21,10 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-   
 }
 .modal-dialog{
-    margin-top: 70px;
+    top: 15%;
+    /* margin-top: 70px; */
     /* margin-bottom: 50px; */
 }
 
@@ -108,5 +108,15 @@ form .btns input {
 
 form .btns input:hover {
     box-shadow: 0px 0px 5px #fff inset;
+    color: white;
+}
+
+.edit {
+    background-color: rgb(11, 141, 185);
+    color: white;
+}
+
+.delete {
+    background-color: rgb(186, 6, 36);
     color: white;
 }
