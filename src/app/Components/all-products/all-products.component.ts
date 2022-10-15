@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interfaces/iproduct';
 
 @Component({
@@ -7,7 +7,8 @@ import { IProduct } from 'src/app/interfaces/iproduct';
   styleUrls: ['./all-products.component.css']
 })
 export class AllProductsComponent implements OnInit {
-  // private product:IProduct[];
+  
+  @Input() item: IProduct = {} as IProduct;
   constructor() { }
 
   ngOnInit(): void {

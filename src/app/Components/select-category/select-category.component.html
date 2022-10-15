@@ -1,0 +1,3 @@
+<select id="selectCat" name="selectCat" class="select" [(ngModel)]="selectedCat" (change)="setSelectedCat()">
+    <option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</option>
+  </select>

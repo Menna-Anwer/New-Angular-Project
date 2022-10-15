@@ -1,0 +1,7 @@
+select {
+    border: none;
+    transition: 0.3s all;
+    flex-basis: 40%;
+    padding: 8px 15px;
+    background-color: #eee;
+}

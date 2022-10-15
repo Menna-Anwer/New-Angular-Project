@@ -22,8 +22,7 @@ import { UOrderComponent } from './Components/uorder/uorder.component';
 import { ListOrderComponent } from './Components/list-order/list-order.component';
 import { CardOrderComponent } from './Components/card-order/card-order.component';
 import { AllUsersComponent } from './Components/all-users/all-users.component';
-import { UFormComponent } from './Components/uform/uform.component';
-import { AddProductComponent } from './Components/add-product/add-product.component';
+import { SelectCategoryComponent } from './Components/select-category/select-category.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +42,7 @@ import { AddProductComponent } from './Components/add-product/add-product.compon
     ListOrderComponent,
     CardOrderComponent,
     AllUsersComponent,
-    UFormComponent,
-    AddProductComponent
+    SelectCategoryComponent
 
   ],
   imports: [

@@ -30,7 +30,7 @@
         <div class="menu-details">
           <div class="latest d-grid gap-1">
             <div class="card mycard"  *ngFor="let prod of products" (dblclick)="addOrderItem(prod)">
-              <img src="{{prod.image}}" alt="" />
+              <img src="http://localhost:8080/{{prod.image}}" alt="" />
               <h4>{{prod.name}}</h4>
               <div class="price">{{prod.price | currency:'EGP'}}</div>
             </div>
