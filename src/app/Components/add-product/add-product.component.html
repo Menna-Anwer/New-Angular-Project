@@ -1,0 +1,36 @@
+<div id="staticBackdrop" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <h1>Add Product</h1>
+        <form action="" class="my-4">
+          <div class="label-input d-flex align-items-center justify-content-between">
+            <label for="user">Name</label>
+            <input id="user" type="text" />
+          </div>
+          <div class="label-input d-flex align-items-center justify-content-between position-relative">
+            <label for="product-price">Price</label>
+            <input id="product-price" type="number" />
+            <span class="position-absolute end-0 text-dark me-4">EGP</span>
+          </div>
+          <div class="label-input d-flex align-items-center justify-content-between">
+            <label for="myfile">Product Picture</label>
+            <input type="file" id="myfile" name="" />
+          </div>
+          <div class="label-input d-flex align-items-center justify-content-between">
+            <label for="cat">Category</label>
+            <select id="cat" name="room" class="select p-3">
+              <option value="combo">Hot Drinks</option>
+              <option value="milk">Iced Drinks</option>
+            </select>
+          </div>
+          <div class="btns d-flex justify-content-evenly">
+            <input class="btn w-25" type="submit" value="save" />
+            <input class="btn w-25" type="reset" value="reset" />
+          </div>
+        </form>
+        <div class="btn btn-secondary w-25 d-block mx-auto" id="cls">
+          Close
+        </div>
+      </div>
+    </div>
+  </div>

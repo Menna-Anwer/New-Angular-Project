@@ -1,0 +1,53 @@
+<div class="container mt-5 mb-5">
+    <div id="staticBackdrop" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content p-3">
+            <h1>Add User</h1>
+            <form action="" class="my-4">
+              <div class="label-input d-flex align-items-center justify-content-between">
+                <label for="user">Name</label>
+                <input id="user" type="text" />
+              </div>
+              <div class="label-input d-flex align-items-center justify-content-between">
+                <label for="useremail">Email</label>
+                <input id="useremail" type="email" />
+              </div>
+              <div class="label-input d-flex align-items-center justify-content-between">
+                <label for="userpass">Password</label>
+                <input id="userpass" type="password" />
+              </div>
+              <div class="label-input d-flex align-items-center justify-content-between">
+                <label for="userconfpass">Confirm Password</label>
+                <input id="userconfpass" type="password" />
+              </div>
+              <div class="label-input d-flex align-items-center justify-content-between">
+                <label for="roomnumber">Room No.</label>
+                <input id="roomnumber" type="number" />
+              </div>
+              <div class="label-input d-flex align-items-center justify-content-between">
+                <label for="ext">Ext.</label>
+                <input id="ext" type="text" />
+              </div>
+              <div class="label-input d-flex align-items-center justify-content-between">
+                <label for="myfile">Profil Picture</label>
+                <input type="file" id="myfile" name="" />
+              </div>
+              <div class="btns d-flex justify-content-evenly">
+                <input class="btn w-25" type="submit" value="submit" />
+                <input class="btn w-25" type="reset" value="reset" />
+              </div>
+            </form>
+    
+            <div class="btn btn-secondary w-25 d-block mx-auto" id="cls">
+              Close
+            </div>
+          </div>
+        </div>
+      </div>
+    <h1 style="color:white;font-size:35px ">All Users</h1>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Add User</button>
+    <app-uorder></app-uorder>
+    <app-list-order></app-list-order>
+
+</div>
