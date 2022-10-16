@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center row">
+    <div class="">
+        <div class="d-flex flex-row justify-content-between align-items-center p-3 bg-white mt-4 rounded">
+            <div class="mr-1">
+                <p class="date-order-user m-0">{{item.date | date:'medium'}}</p>
+            </div>
+            <div class="d-flex flex-column align-items-center product-details">
+                {{item.status}}
+            </div>
+            <div>
+                <h5 class="text-grey m-0">{{item.totalPrice | currency:'EGP'}}</h5>
+            </div>
+            <div class="d-flex align-items-center">
+                <button class="btn" (click)="cancle(item._id)" [disabled]="item.status==='canceled'">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

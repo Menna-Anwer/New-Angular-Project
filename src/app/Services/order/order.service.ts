@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IOrder } from 'src/app/interfaces/iorder';
 import { IOrderItem } from 'src/app/interfaces/iorder-item';
 import { IOrderPop } from 'src/app/interfaces/iorder-pop';
@@ -18,10 +18,12 @@ export class OrderService {
   orders: BehaviorSubject<IOrderPop[]>;
   headersOptions;
   token: string;
+  ordersByUser: BehaviorSubject<IOrderPop[]>;
   constructor(private httpClient: HttpClient, private router: Router) {
     this.orderItems = new BehaviorSubject<IOrderItem[]>([]);
     this.totalPrice = new BehaviorSubject<number>(0);
     this.orders = new BehaviorSubject<IOrderPop[]>([]);
+    this.ordersByUser = new BehaviorSubject<IOrderPop[]>([]);
     this.token = localStorage.getItem('token')!
     this.headersOptions = {
       headers: new HttpHeaders({
@@ -67,6 +69,25 @@ export class OrderService {
     });
     return this.orders;
   }
+
+  getOrdersByUserId(id: string): BehaviorSubject<IOrderPop[]>{
+    this.isExpired(new BehaviorSubject<IOrderPop[]>([]));
+    this.httpClient.get<IOrderPop[]>(`${environment.OrderApi}/user?id=${id}`,this.headersOptions).subscribe(value => {
+      this.ordersByUser.next(value);
+    });
+    return this.ordersByUser
+  }
+
+  cancle(id: string): void{
+    this.isExpired('void');
+    this.httpClient.patch<IOrderPop>(`${environment.OrderApi}/${id}`, JSON.stringify({'status': 'canceled'}), this.headersOptions).subscribe(value =>{
+      let oldValues = this.ordersByUser.value;
+      let index = oldValues.findIndex(el => el._id === id);
+      oldValues[index] = value;
+      this.ordersByUser.next(oldValues);
+    });
+  }
+
   incQtyOFItem(id: string, qty?: number): void {
     let oldValues: IOrderItem[] = [...this.orderItems.value];
     let index = oldValues.findIndex(el => el.id === id);

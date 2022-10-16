@@ -2,7 +2,7 @@
     border: none;
     padding: 15px;
     text-align: center;
-    width: 25%;
+    /* width: 25%; */
 }
 
 .card img {
@@ -27,5 +27,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.test{
+    width: 250px;
 }
 
