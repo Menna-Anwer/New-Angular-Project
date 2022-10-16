@@ -14,7 +14,8 @@ export class AllUsersComponent implements OnInit {
   addUserForm: FormGroup;
   selectedType: string = 'admin'
   products: IUser[] = [];
-  constructor(private router: Router,private AuthServiceService:AuthServiceService) {
+  editMode:boolean =  false;
+  constructor(private router: Router,private authServiceService:AuthServiceService) {
     this.addUserForm=new FormGroup({
       name: new FormControl('', [Validators.required,Validators.pattern("[A-Za-z]{3,}")]),
       email:new FormControl("",[Validators.required,Validators.pattern("[^ @]*@[^ @]*")]),
@@ -38,7 +39,7 @@ export class AllUsersComponent implements OnInit {
     formData.append('password', this.addUserForm.get('password')?.value),
     formData.append('image', this.addUserForm.get('image')?.value);
     formData.append('type', this.selectedType);
-    this.AuthServiceService.signup(formData).subscribe(value => {
+    this.authServiceService.signup(formData).subscribe(value => {
       console.log(value);
     })
 
@@ -51,13 +52,8 @@ export class AllUsersComponent implements OnInit {
       })
     }
   }
-  // signUp(data:any){
-  //   this.AuthServiceService.signup(data).subscribe({
-  //     next:(res:any)=>{
-  //       console.log(res)
-  //       localStorage.setItem('token',res.token)
-  //       this.router.navigateByUrl('/home');
-  // },
+ 
+  
    
   samePassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>{
     const pass = control.get('password');
@@ -65,8 +61,6 @@ export class AllUsersComponent implements OnInit {
    
     return pass && rePass && pass.value !== rePass.value ? {notSame: true} : null
   }
-  // setSelectedType(){
-
-  // }
+ 
 
 }
