@@ -49,10 +49,8 @@ export class ProductComponent implements OnInit {
     formData.append('price', this.productForm.get('price')?.value);
     formData.append('image', this.productForm.get('image')?.value);
     formData.append('categoryId', this.selectedCat);
-    this.prodService.addProduct(formData).subscribe(value => {
-      this.reset();
-    })
-    
+    this.prodService.addProduct(formData);
+     this.reset();
   }
 
   reset(): void{

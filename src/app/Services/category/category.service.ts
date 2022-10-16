@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ICategory } from 'src/app/interfaces/icategory';
 import { environment } from 'src/environments/environment';
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +14,31 @@ export class CategoryService {
 
   categories: BehaviorSubject<ICategory[]>;
   selectedCat: BehaviorSubject<string>;
-  constructor(private httpClient: HttpClient) {
+  private jwtHelper = new JwtHelperService();
+  token: string;
+  headersOptions;
+  constructor(private httpClient: HttpClient, private router: Router) {
     this.categories = new BehaviorSubject<ICategory[]>([]);
     this.selectedCat = new BehaviorSubject<string>('');
+    this.token = localStorage.getItem('token')!
+    this.headersOptions = {
+      headers: new HttpHeaders({
+        'Authorization': this.token
+      })
+    };
+   }
+   
+
+   isExpired(data:any){
+    if(this.jwtHelper.isTokenExpired(this.token)){
+      this.router.navigateByUrl('/login');
+      return data
+    }
    }
 
    getCategories(): BehaviorSubject<ICategory[]>{
-    this.httpClient.get<ICategory[]>(`${environment.CategoriesApi}`).subscribe(value => {
+    this.isExpired(new BehaviorSubject<ICategory[]>([]));
+    this.httpClient.get<ICategory[]>(`${environment.CategoriesApi}`,this.headersOptions).subscribe(value => {
       this.categories.next(value);
       this.selectedCat.next(value[0]._id)
     });

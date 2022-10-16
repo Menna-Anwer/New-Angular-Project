@@ -21,6 +21,7 @@ export class AdminComponent implements OnInit {
   totalPrice: number = 0;
   selectedUser: string = '';
   notes?: string;
+  isUser: boolean = true;
   order: IOrder = {} as IOrder;
   constructor(private prodService: ProductService, private orderService: OrderService, private auth: AuthServiceService) { }
 
@@ -34,8 +35,16 @@ export class AdminComponent implements OnInit {
     this.orderService.getTotalPrice().subscribe(value => {
       this.totalPrice = value;
     });
-    this.auth.getSelectedUser().subscribe(value=>{
-      this.selectedUser = value;
+
+    this.auth.getIsUser().subscribe(value => {
+      this.isUser = value;
+      if(this.isUser === true){       
+        this.selectedUser = localStorage.getItem('userId')!;
+      }else{
+        this.auth.getSelectedUser().subscribe(value=>{
+          this.selectedUser = value;
+        })
+      }
     })
   }
 

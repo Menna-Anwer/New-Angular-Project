@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IUser } from 'src/app/interfaces/iuser';
 import { AuthServiceService } from 'src/app/Services/auth-service.service';
 
 @Component({
@@ -8,9 +9,20 @@ import { AuthServiceService } from 'src/app/Services/auth-service.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private authServ:AuthServiceService) { }
+  isUser:boolean = false;
+  logedUser: IUser ;
+  constructor(private authServ:AuthServiceService) { 
+    this.logedUser = {} as IUser
+  }
+
 
   ngOnInit(): void {
+    this.authServ.getIsUser().subscribe(value=>{
+      this.isUser=value
+    })
+    this.authServ.getLoggedUser().subscribe(value => {
+      this.logedUser = value;
+    })
   }
   logout():void{
     this.authServ.logout();

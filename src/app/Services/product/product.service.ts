@@ -39,9 +39,13 @@ export class ProductService {
     return this.products;
   }
 
-  addProduct(data: any): Observable<any>{
+  addProduct(data: any): void{
     this.isExpired();
-    return this.httpclient.post<any>(`${environment.ProductsApi}`,data,this.headersOptions);
+    this.httpclient.post<IProduct>(`${environment.ProductsApi}`,data,this.headersOptions).subscribe(value => {
+      let oldValues = this.products.value;
+      oldValues.push(value);
+      this.products.next(oldValues);
+    });
   }
 
   updateProduct(data: any,id: string):void{

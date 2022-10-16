@@ -42,9 +42,7 @@ export class AllUsersComponent implements OnInit {
     formData.append('password', this.addUserForm.get('password')?.value),
     formData.append('image', this.addUserForm.get('image')?.value);
     formData.append('type', this.selectedType);
-    this.authServiceService.signup(formData).subscribe(value => {
-      console.log(value);
-    })
+    this.authServiceService.signup(formData);
     this.reset();
   }
   change(event:any):void{

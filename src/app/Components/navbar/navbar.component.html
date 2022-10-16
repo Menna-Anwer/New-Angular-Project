@@ -20,7 +20,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link"  routerLinkActive="active"
-
+            [hidden]="isUser"
              routerLink="/product">Products</a>
 
              <!-- routerLink="/home">Products</a> -->
@@ -28,15 +28,15 @@
           </li>
           <li class="nav-item">
             <a class="nav-link"  
-             routerLinkActive="active" routerLink="/user">Users</a>
+             routerLinkActive="active" [hidden]="isUser" routerLink="/user">Users</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" 
-              routerLinkActive="active" routerLink="/order">Manual Order</a>
+              routerLinkActive="active" [hidden]="isUser" routerLink="/order">Orders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" 
-              routerLinkActive="active" routerLink="/home">Checks</a>
+              routerLinkActive="active" [hidden]="isUser" routerLink="/home">Checks</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="logout()">Logout</a>
@@ -44,9 +44,9 @@
         </ul>
         <div class="nav-user gap-3 d-flex align-items-center">
           <div class="nav-img">
-            <img src="./137-79584.jpg" alt="" />
+            <img src="http://localhost:8080/{{logedUser.image}}" alt="" />
           </div>
-          <h3>Admin</h3>
+          <h3>{{isUser? logedUser.name: 'Admin'}}</h3>
         </div>
       </div>
     </div>

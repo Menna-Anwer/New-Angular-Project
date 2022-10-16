@@ -24,9 +24,11 @@
         </div>
       </div>
       <div class="col-12 col-lg-6 mt-5 mt-lg-0 menu">
-        <h4 class="mb-3">Add to user</h4>
-        <app-select-user></app-select-user>
-        <hr />
+        <ng-container *ngIf="!isUser">
+          <h4 class="mb-3">Add to user</h4>
+          <app-select-user></app-select-user>
+          <hr />
+        </ng-container>
         <div class="menu-details">
           <div class="latest d-grid gap-1">
             <div class="card mycard"  *ngFor="let prod of products" (dblclick)="addOrderItem(prod)">

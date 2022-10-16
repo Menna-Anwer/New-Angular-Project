@@ -5,26 +5,38 @@ import { IOrder } from 'src/app/interfaces/iorder';
 import { IOrderItem } from 'src/app/interfaces/iorder-item';
 import { IOrderPop } from 'src/app/interfaces/iorder-pop';
 import { environment } from 'src/environments/environment';
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-
+  private jwtHelper = new JwtHelperService();
   orderItems: BehaviorSubject<IOrderItem[]>;
   totalPrice: BehaviorSubject<number>;
   orders: BehaviorSubject<IOrderPop[]>;
   headersOptions;
-  constructor(private httpClient: HttpClient) {
+  token: string;
+  constructor(private httpClient: HttpClient, private router: Router) {
     this.orderItems = new BehaviorSubject<IOrderItem[]>([]);
     this.totalPrice = new BehaviorSubject<number>(0);
     this.orders = new BehaviorSubject<IOrderPop[]>([]);
+    this.token = localStorage.getItem('token')!
     this.headersOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': this.token
       })
     };
   }
+
+  isExpired(data:any){
+    if(this.jwtHelper.isTokenExpired(this.token)){
+      this.router.navigateByUrl('/login');
+      return data
+    }
+   }
 
   addNewItem(item: IOrderItem): void {
     let oldValues: IOrderItem[] = [...this.orderItems.value];
@@ -46,8 +58,11 @@ export class OrderService {
     return this.orderItems;
   }
 
+
+
   getOrders(): BehaviorSubject<IOrderPop[]>{
-    this.httpClient.get<IOrderPop[]>(`${environment.OrderApi}`).subscribe(value => {
+    this.isExpired(new BehaviorSubject<IOrderPop[]>([]))
+    this.httpClient.get<IOrderPop[]>(`${environment.OrderApi}`,this.headersOptions).subscribe(value => {
       this.orders.next(value);
     });
     return this.orders;
@@ -104,6 +119,7 @@ export class OrderService {
   }
 
   addOrder(order:IOrder): void{
+    this.isExpired('void');
     this.httpClient.post<IOrder>(`${environment.OrderApi}`,JSON.stringify(order),this.headersOptions).subscribe(value =>{
       console.log(value);
     })
