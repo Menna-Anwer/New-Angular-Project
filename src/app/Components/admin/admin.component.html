@@ -12,13 +12,13 @@
         </div>
         <div class="order-notes">
           <h3>Notes</h3>
-          <textarea class="d-block" name="" id=""></textarea>
+          <textarea class="d-block" name="notes" id="notes" [(ngModel)]="notes"></textarea>
           <div class="row justify-content-between">
             <div class="total-price text-center text-lg-start my-2 col-6"><strong>Total price </strong></div>
             <div class="total-price text-center text-lg-end my-2 col-6">{{totalPrice}}</div>
 
           </div>
-          <div class="order-submit btn btn-Conf w-50 d-block mx-auto p-3 my-2">
+          <div class="order-submit btn btn-Conf w-50 d-block mx-auto p-3 my-2" (click)="confirm()">
             Confirm
           </div>
         </div>

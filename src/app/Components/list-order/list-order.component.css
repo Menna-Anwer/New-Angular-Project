@@ -1,4 +1,31 @@
-input[type=number] {
-    -moz-appearance: textfield;
+.card {
+    border: none;
+    padding: 15px;
+    text-align: center;
+    width: 25%;
+}
+
+.card img {
+    width: 75%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: block;
+    margin-inline: auto;
+    margin-bottom: 10px;
+}
+
+
+.price{
+    height: 45px;
+    background-color: #ddd;
+    border-radius: 25%;
+    padding: 7px;
+    color: black;
+}
+.mycard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 

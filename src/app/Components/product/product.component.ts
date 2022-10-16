@@ -75,7 +75,7 @@ export class ProductComponent implements OnInit {
     formData.append('categoryId', this.selectedCat);
     if(this.productForm.get('image')!.value !== ''){
       formData.append('image', this.productForm.get('image')?.value);
-      console.log(333);
+      
     }else{
       formData.append('imageUrl', this.updatedItem.image);
     }

@@ -13,26 +13,29 @@ import { AuthServiceService } from './../../Services/auth-service.service';
 export class AllUsersComponent implements OnInit {
   addUserForm: FormGroup;
   selectedType: string = 'admin'
-  products: IUser[] = [];
+  users: IUser[] = [];
   editMode:boolean =  false;
+  updatesUser: IUser = {} as IUser;
   constructor(private router: Router,private authServiceService:AuthServiceService) {
     this.addUserForm=new FormGroup({
       name: new FormControl('', [Validators.required,Validators.pattern("[A-Za-z]{3,}")]),
       email:new FormControl("",[Validators.required,Validators.pattern("[^ @]*@[^ @]*")]),
-      image:new FormControl(""),
-      type:new FormControl(""),
+      image:new FormControl("",Validators.required),
+      type:new FormControl("",Validators.required),
       imageName: new FormControl('', Validators.required),
       password: new FormControl('',[
         Validators.minLength(8),
         Validators.required]),
-      repeatPassword: new FormControl('')
+      repeatPassword: new FormControl('',Validators.required)
     },{validators:this.samePassword})
    }
 
   ngOnInit(): void {
+    this.authServiceService.getFullUsers().subscribe(value => {
+      this.users = value;
+    })
   }
-  addUser(){
-    //  return this.addUserForm.value as IUser
+  addUser():void{
     let formData: FormData = new FormData();
     formData.append('name', this.addUserForm.get('name')?.value)
     formData.append('email', this.addUserForm.get('email')?.value)
@@ -42,9 +45,9 @@ export class AllUsersComponent implements OnInit {
     this.authServiceService.signup(formData).subscribe(value => {
       console.log(value);
     })
-
+    this.reset();
   }
-  change(event:any){
+  change(event:any):void{
     if(event.target.files.length>0){
       const file = event.target.files[0];
       this.addUserForm.patchValue({
@@ -53,8 +56,39 @@ export class AllUsersComponent implements OnInit {
     }
   }
  
-  
+  reset():void{
+    this.addUserForm.reset();
+  }
    
+  edit(user: IUser):void{
+    this.editMode = true;
+    this.updatesUser = user;
+    this.addUserForm.controls['name'].setValue(user.name);
+    this.addUserForm.controls['email'].setValue(user.email);
+    this.addUserForm.controls['type'].setValue(user.type);
+    this.addUserForm.controls['password'].setValue(user.password);
+    this.addUserForm.controls['repeatPassword'].setValue(user.password);
+  }
+
+
+  update(): void{
+    let formData: FormData = new FormData();
+    formData.append('name', this.addUserForm.get('name')?.value);
+    formData.append('email', this.addUserForm.get('email')?.value);
+    formData.append('type', this.addUserForm.get('type')?.value);
+    formData.append('password', this.addUserForm.get('password')?.value);
+    if(this.addUserForm.get('image')!.value !== ''){
+    formData.append('image', this.addUserForm.get('image')?.value);
+    }else{
+    formData.append('imageUrl', this.updatesUser.image);
+    }
+    this.authServiceService.updateUser(formData, this.updatesUser._id);
+    this.reset();
+  }
+
+  delete(id: string):void{
+    this.authServiceService.deleteUser(id);
+  }
   samePassword: ValidatorFn = (control: AbstractControl): ValidationErrors | null =>{
     const pass = control.get('password');
     const rePass = control.get('repeatPassword');

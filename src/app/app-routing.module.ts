@@ -6,16 +6,17 @@ import { CardOrderComponent } from './Components/card-order/card-order.component
 import { LayoutComponent } from './Components/layout/layout.component';
 import { LoginComponent } from './Components/login/login.component';
 import { ProductComponent } from './Components/product/product.component';
+import { AuthGuard } from './guards/auth/auth.guard';
 
 
 const routes: Routes = [
   {path:"",component:LayoutComponent,children:[
     {path: "", redirectTo: "home", pathMatch: "full"},
-   {path:"home",component:AdminComponent},
-   {path:"user",component:AllUsersComponent},
-   {path:"order",component:CardOrderComponent},
+   {path:"home",component:AdminComponent, canActivate: [AuthGuard]},
+   {path:"user",component:AllUsersComponent,canActivate: [AuthGuard]},
+   {path:"order",component:CardOrderComponent,canActivate: [AuthGuard]},
 
-   {path:"product",component:ProductComponent},
+   {path:"product",component:ProductComponent,canActivate: [AuthGuard]},
   ]},
   {path:"login",component:LoginComponent},
  

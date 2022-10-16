@@ -13,7 +13,7 @@ nav {
     top: 0;
     transition: 0.2s all ease-in;
     z-index: 9999;
-    background-color: #8a868657;
+    background-color: #8a8686;
 }
 
 nav:hover {

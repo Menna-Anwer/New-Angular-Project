@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   AuthApi:"http://localhost:8080/auth",
   CategoriesApi: "http://localhost:8080/categories",
-  ProductsApi: "http://localhost:8080/products"
+  ProductsApi: "http://localhost:8080/products",
+  OrderApi: "http://localhost:8080/order"
 };
 
 /*

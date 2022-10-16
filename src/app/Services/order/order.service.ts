@@ -1,7 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { IOrder } from 'src/app/interfaces/iorder';
 import { IOrderItem } from 'src/app/interfaces/iorder-item';
+import { IOrderPop } from 'src/app/interfaces/iorder-pop';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +13,17 @@ export class OrderService {
 
   orderItems: BehaviorSubject<IOrderItem[]>;
   totalPrice: BehaviorSubject<number>;
+  orders: BehaviorSubject<IOrderPop[]>;
+  headersOptions;
   constructor(private httpClient: HttpClient) {
     this.orderItems = new BehaviorSubject<IOrderItem[]>([]);
     this.totalPrice = new BehaviorSubject<number>(0);
+    this.orders = new BehaviorSubject<IOrderPop[]>([]);
+    this.headersOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
   }
 
   addNewItem(item: IOrderItem): void {
@@ -35,6 +46,12 @@ export class OrderService {
     return this.orderItems;
   }
 
+  getOrders(): BehaviorSubject<IOrderPop[]>{
+    this.httpClient.get<IOrderPop[]>(`${environment.OrderApi}`).subscribe(value => {
+      this.orders.next(value);
+    });
+    return this.orders;
+  }
   incQtyOFItem(id: string, qty?: number): void {
     let oldValues: IOrderItem[] = [...this.orderItems.value];
     let index = oldValues.findIndex(el => el.id === id);
@@ -84,5 +101,16 @@ export class OrderService {
 
   getTotalPrice(): BehaviorSubject<number> {
     return this.totalPrice;
+  }
+
+  addOrder(order:IOrder): void{
+    this.httpClient.post<IOrder>(`${environment.OrderApi}`,JSON.stringify(order),this.headersOptions).subscribe(value =>{
+      console.log(value);
+    })
+  }
+
+  reset(): void{
+    this.orderItems.next([]);
+    this.totalPrice.next(0);
   }
 }

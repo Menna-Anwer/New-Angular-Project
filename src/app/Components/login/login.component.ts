@@ -22,15 +22,7 @@ export class LoginComponent implements OnInit {
   }
   
   login() {
-    this.AuthServiceService.login(this.userLoginForm.value).subscribe(value => {
-      if (value.status == 200) {
-        let body = { ...value.body! }
-        localStorage.setItem("token", body.token);
-        localStorage.setItem("userId", body.userId);
-        this.router.navigateByUrl('/home');
-      }
-
-    })
+    this.AuthServiceService.login(this.userLoginForm.value);
   }
 
 }

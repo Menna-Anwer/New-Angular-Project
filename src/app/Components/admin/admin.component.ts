@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IOrder } from 'src/app/interfaces/iorder';
 import { IOrderItem } from 'src/app/interfaces/iorder-item';
 import { IProduct } from 'src/app/interfaces/iproduct';
 import { AuthServiceService } from 'src/app/Services/auth-service.service';
@@ -19,6 +20,8 @@ export class AdminComponent implements OnInit {
   searchVal: string = '';
   totalPrice: number = 0;
   selectedUser: string = '';
+  notes?: string;
+  order: IOrder = {} as IOrder;
   constructor(private prodService: ProductService, private orderService: OrderService, private auth: AuthServiceService) { }
 
   ngOnInit(): void {
@@ -55,7 +58,23 @@ export class AdminComponent implements OnInit {
       price: prod.price,
       quantity: 1
     }
-    // this.orderItems.push(item);
     this.orderService.addNewItem(item);
   }
+
+  confirm():void{
+    this.order.date = new Date();
+    this.order.creatorId = this.selectedUser;
+    this.order.items = this.orderItems.map(el => ({prodId: el.id, qty: el.quantity}));
+    this.order.notes = this.notes;
+    this.order.totalPrice = this.totalPrice;
+    this.order.status = 'processing';
+
+    console.log(this.order);
+
+    this.orderService.addOrder(this.order);
+    this.orderService.reset();
+    this.notes = undefined;
+    
+  }
+  
 }
