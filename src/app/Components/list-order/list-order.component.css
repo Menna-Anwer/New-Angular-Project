@@ -2,12 +2,3 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.edit {
-    background-color: rgb(11, 141, 185);
-    color: white;
-}
-
-.delete {
-    background-color: rgb(186, 6, 36);
-    color: white;
-}
