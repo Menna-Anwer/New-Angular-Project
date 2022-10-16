@@ -6,6 +6,16 @@
     flex-basis: 60%;
     background-color: #eee;
 }
+
+.edit {
+    background-color: rgb(11, 141, 185);
+    color: white;
+}
+
+.delete {
+    background-color: rgb(186, 6, 36);
+    color: white;
+}
  label{
     font-size: 25px;
  }
