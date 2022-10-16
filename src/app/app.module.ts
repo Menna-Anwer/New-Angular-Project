@@ -23,6 +23,8 @@ import { ListOrderComponent } from './Components/list-order/list-order.component
 import { CardOrderComponent } from './Components/card-order/card-order.component';
 import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { SelectCategoryComponent } from './Components/select-category/select-category.component';
+import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
+import { AllMyOrderComponent } from './Components/all-my-order/all-my-order.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { SelectCategoryComponent } from './Components/select-category/select-cat
     ListOrderComponent,
     CardOrderComponent,
     AllUsersComponent,
-    SelectCategoryComponent
+    SelectCategoryComponent,
+    MyOrdersComponent,
+    AllMyOrderComponent
 
   ],
   imports: [

@@ -5,6 +5,7 @@ import { AllUsersComponent } from './Components/all-users/all-users.component';
 import { CardOrderComponent } from './Components/card-order/card-order.component';
 import { LayoutComponent } from './Components/layout/layout.component';
 import { LoginComponent } from './Components/login/login.component';
+import { MyOrdersComponent } from './Components/my-orders/my-orders.component';
 import { ProductComponent } from './Components/product/product.component';
 
 
@@ -14,7 +15,7 @@ const routes: Routes = [
    {path:"home",component:AdminComponent},
    {path:"user",component:AllUsersComponent},
    {path:"order",component:CardOrderComponent},
-
+   {path:"myorders",component:MyOrdersComponent},
    {path:"product",component:ProductComponent},
   ]},
   {path:"login",component:LoginComponent},
