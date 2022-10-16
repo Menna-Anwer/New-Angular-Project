@@ -1,7 +1,8 @@
 export interface IUser {
+    _id:string,
     name:string,
     email:string,
     password:string,
-    roomNo:number,
-    image:string
+    image:string,
+    type:string,
 }

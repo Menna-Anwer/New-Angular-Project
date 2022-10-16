@@ -9,6 +9,24 @@ nav {
 
 }
 
+.btn-Conf{
+    background-color: #f6eff1;
+    color: black;
+    border: 1px aliceblue;
+    border-radius: inherit;
+    font-size: 18px;
+    font-weight: bold;
+    width: 38% !important;
+}
+.menu {
+    background: #5e9ebd;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 5px 6px 9px #a2a2a269;
+  
+
+}
+
 .ser {
     position: relative;
     margin-bottom: 20px;
@@ -16,7 +34,7 @@ nav {
 
 .ser svg {
     position: absolute;
-    color: #919875;
+    color: #6c0518;
     z-index: 1;
     height: 50%;
     margin-left: 15px;
@@ -31,12 +49,13 @@ nav {
 }
 
 .orders-details {
-    background-color: #f2f2f2;
-    color: black;
+    background: #5e9ebd;
+    color: white;
     padding: 20px;
     border: 1px solid rgb(72, 72, 72);
-    border-radius: 10px;
+    border-radius: 4px;
     max-height: 700px;
+    box-shadow: 5px 6px 9px #a2a2a269;
 }
 
 
@@ -83,9 +102,11 @@ textarea {
         align-items: center;
         margin-top: 10px;
     }
+   
 
     .order-submit {
         width: 100% !important;
+      
     }
 
 }
@@ -114,9 +135,12 @@ textarea {
 }
 
 .menu {
-    background: #919875;
+    background: #5e9ebd;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 6px 9px #a2a2a269;
+  
+
 }
 .price{
     height: 45px;
