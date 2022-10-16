@@ -52,7 +52,7 @@ export class ProductComponent implements OnInit {
     formData.append('image', this.productForm.get('image')?.value);
     formData.append('categoryId', this.selectedCat);
     this.prodService.addProduct(formData).subscribe(value => {
-      console.log(value);
+      this.reset();
     })
     
   }
