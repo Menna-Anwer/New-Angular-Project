@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IMapedUser } from '../interfaces/imaped-user';
 import { environment } from './../../environments/environment';
+import { IUser } from 'src/app/interfaces/iuser';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,9 @@ export class AuthServiceService {
     };
     this.users = new BehaviorSubject<IMapedUser[]>([]);
     this.selectedUser = new BehaviorSubject<string>('');
+  }
+  signup(data:any):Observable<IUser>{
+    return this.httpClient.post<IUser>(`${environment.AuthApi}/register`,data)
   }
   login(user:any):Observable<any>{
      return this.httpClient.post<any>(`${environment.AuthApi}/login`,JSON.stringify(user),{headers:new HttpHeaders({

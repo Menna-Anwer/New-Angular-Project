@@ -45,7 +45,7 @@ export class ProductComponent implements OnInit {
     }
   }
   submit():void{
-    let data = {...this.productForm.value};
+    // let data = {...this.productForm.value};
     let formData: FormData = new FormData();
     formData.append('name', this.productForm.get('name')?.value);
     formData.append('price', this.productForm.get('price')?.value);
@@ -81,7 +81,7 @@ export class ProductComponent implements OnInit {
     }else{
       formData.append('imageUrl', this.updatedItem.image);
     }
-    formData.forEach((k,v) =>{ console.log(v); console.log(k)})
+    // formData.forEach((k,v) =>{ console.log(v); console.log(k)})
     this.prodService.updateProduct(formData, this.updatedItem._id)
     this.reset();
   }

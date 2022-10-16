@@ -6,26 +6,35 @@
             <form [formGroup]="addUserForm" class="my-3" (ngSubmit)="addUser()">
               <div class="label-input ">
                 <label for="user">Name</label>
-                <input id="user" type="text" class="form-control" formControlName="name" name="name" />
+                <input id="user" type="text" class="form-control"
+                 formControlName="name" name="name" />
               </div>
               <div class="label-input ">
                 <label for="useremail">Email</label>
-                <input id="useremail" type="email"  class="form-control" formControlName="email" name="email" />
+                <input id="useremail" type="email"  class="form-control"
+                 formControlName="email" name="email" />
               </div>
               <div class="label-input ">
                 <label for="userpass">Password</label>
-                <input id="userpass" type="password" class="form-control" formControlName="password" name=" password"/>
+                <input id="userpass" type="password" class="form-control" 
+                formControlName="password" name=" password"/>
               </div>
               <div class="label-input ">
                 <label for="userconfpass">Confirm Password</label>
-                <input id="userconfpass" type="password" class="form-control" formControlName="repeatPassword" name=" repeatPassword" />
+                <input id="userconfpass" type="password" class="form-control"
+                 formControlName="repeatPassword" name=" repeatPassword" />
                 <p class="text-danger" *ngIf="addUserForm.errors?.['notSame']">not match</p>
               </div>
       
               <div class="label-input ">
                 <label for="myfile">Profil Picture</label>
-                <input type="file" id="myfile" class="form-control" formControlName="image" name=" image" />
+                <input type="file" id="myfile" class="form-control" formControlName="imageName" 
+                name=" image" (change)="change($event)"/>
               </div>
+              <select id="selectCat" name="selectCat" class="select"  formControlName="type">
+                <option  [value]="'admin'">Admin</option>
+                <option  [value]="'user'">User</option>
+              </select>
               <div class="btns d-flex justify-content-evenly">
                 <input class="btn btn1 w-25" type="submit" value="submit" />
                 <input class="btn btn2 w-25" type="reset" value="reset" />
