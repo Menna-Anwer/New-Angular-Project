@@ -23,32 +23,41 @@ export class CategoryService {
     this.token = localStorage.getItem('token')!
     this.headersOptions = {
       headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'Authorization': this.token
       })
     };
-   }
-   
+  }
 
-   isExpired(data:any){
-    if(this.jwtHelper.isTokenExpired(this.token)){
+  isExpired(data: any) {
+    if (this.jwtHelper.isTokenExpired(this.token)) {
       this.router.navigateByUrl('/login');
       return data
     }
-   }
+  }
 
-   getCategories(): BehaviorSubject<ICategory[]>{
+  getCategories(): BehaviorSubject<ICategory[]> {
     this.isExpired(new BehaviorSubject<ICategory[]>([]));
-    this.httpClient.get<ICategory[]>(`${environment.CategoriesApi}`,this.headersOptions).subscribe(value => {
+    this.httpClient.get<ICategory[]>(`${environment.CategoriesApi}`, this.headersOptions).subscribe(value => {
       this.categories.next(value);
       this.selectedCat.next(value[0]._id)
     });
     return this.categories;
-   }
+  }
 
-   getSelectedCat():BehaviorSubject<string>{
+  getSelectedCat(): BehaviorSubject<string> {
     return this.selectedCat;
-   }
-   setSelectedCat(id: string):void{
+  }
+  setSelectedCat(id: string): void {
     this.selectedCat.next(id);
-   }
+  }
+
+  addCategory(name: string): void {
+    this.isExpired('');
+    this.httpClient.post<any>(`${environment.CategoriesApi}`, JSON.stringify({ name: name }), this.headersOptions).subscribe(value => {
+      let oldValues = this.categories.value;
+      oldValues.push(value);
+      this.categories.next(oldValues);
+    })
+  }
 }

@@ -127,8 +127,6 @@ export class AuthServiceService {
   loadSavedUser(id:string):void{
     this.httpClient.get<IUser>(`${environment.AuthApi}/user/${id}`).subscribe(value => {
       this.loggedUser.next(value);
-      console.log(this.loggedUser.value);
-      
       if(value.type === 'user'){
         this.isUser.next(true);
       }else{
@@ -140,11 +138,8 @@ export class AuthServiceService {
   getIsUser():BehaviorSubject<boolean>{
     return this.isUser;
   }
-
   isLogged(): boolean{
     const token = localStorage.getItem('token')!;
-    console.log(typeof(token));
-    
     if(token === null){
       return false;
     }

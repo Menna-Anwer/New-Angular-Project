@@ -12,17 +12,24 @@ import { ProductService } from 'src/app/Services/product/product.service';
 export class ProductComponent implements OnInit {
 
   productForm: FormGroup;
+  catForm: FormGroup;
   selectedCat: string = ''
   products: IProduct[] = [];
   editMode: boolean = false;
+  isAddingCat: boolean = false;
   updatedItem: IProduct = {} as IProduct;
   constructor(private catService: CategoryService, private prodService: ProductService) { 
     this.productForm = new FormGroup({
       name: new FormControl('',Validators.required),
       price: new FormControl('', Validators.required),
       imageName: new FormControl('', Validators.required),
-      image: new FormControl('', Validators.required)
-    })
+      image: new FormControl('', Validators.required),
+      newCat: new FormControl('')
+    });
+
+    this.catForm = new FormGroup({
+      name: new FormControl('', Validators.required)
+    });
   }
 
   ngOnInit(): void {
@@ -61,7 +68,8 @@ export class ProductComponent implements OnInit {
     this.updatedItem = item
     this.productForm.controls['name'].setValue(item.name);
     this.productForm.controls['price'].setValue(item.price);
-    this.selectedCat = item.categoryId;
+    // this.selectedCat = item.categoryId;
+    this.catService.setSelectedCat(item.categoryId);
   }
 
 
@@ -81,5 +89,17 @@ export class ProductComponent implements OnInit {
 
   delete(id:string):void{
     this.prodService.deleteProduct(id);
+  }
+
+  enableAddCat(){
+    this.isAddingCat = true;
+  }
+
+  addCat():void{
+    if(this.catForm.get('name')?.value === null || this.catForm.get('name')?.value === ''){
+      return ;
+    }
+    this.catService.addCategory(this.catForm.get('name')?.value);
+    this.catForm.reset();
   }
 }
