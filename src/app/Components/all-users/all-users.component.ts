@@ -27,7 +27,10 @@ export class AllUsersComponent implements OnInit {
         Validators.minLength(8),
         Validators.required]),
       repeatPassword: new FormControl('',Validators.required)
-    },{validators:this.samePassword})
+    },{validators:this.samePassword});
+
+    console.log(this.addUserForm.controls);
+    
    }
 
   ngOnInit(): void {

@@ -28,12 +28,13 @@ h5{
     font-size: 25px;
  }
 .modal-content{
-    background-color: #5e9ebd;
+    background-color: white;
     border-radius: 3px;
 }
 
 .btn-add{
-    background-color: #5e9ebd;
+    /* background-color: #5e9ebd; */
+    background-color: #f6eff1; background: linear-gradient(to right, #b6b281, #b88b83); color: black;
     width: 20%;
     font-size: 20px;
     font-weight: bold;
@@ -111,6 +112,6 @@ form .btns input {
 }
 
 form .btns input:hover {
-    box-shadow: 0px 0px 5px rgb(206, 203, 203) inset;
+    box-shadow: 0px 0px 5px #fff inset;
     color: white;
 }

@@ -16,3 +16,15 @@
         </div>
     </div>
 </div>
+<div class="order-deatail-price p-3 my-2">
+    <div class="latest row justify-content-evenly gap-1">
+        <!-- <div class="test" > -->
+            <div class="card mycard " *ngFor="let prod of item.items">
+                <img src="http://localhost:8080/{{prod.prodId.image}}" alt="" />
+                <h3 class="">{{prod.prodId.name}}</h3>
+                <div class="price">{{prod.prodId.price | currency:'EGP'}}</div>
+                <h3>{{prod.qty}}</h3>
+            </div>
+        <!-- </div> -->
+    </div>
+</div>

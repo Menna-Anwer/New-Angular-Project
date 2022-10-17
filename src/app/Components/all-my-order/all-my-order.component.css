@@ -1,3 +1,48 @@
 .btn{
     background-color: crimson;
 }
+
+/* .card {
+    border: none;
+    padding: 15px;
+    text-align: center;
+    width: 25%;
+} */
+.latest {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.latest div {
+    padding: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.latest div img {
+    padding-top: 16px;
+    width: 100%;
+    aspect-ratio: 1;
+    /* border-radius: 50%; */
+    display: block;
+    margin-inline: auto;
+}
+
+
+.price{
+    height: 45px;
+    background-color: #ddd;
+    border-radius: 25%;
+    padding: 7px;
+    color: black;
+}
+.mycard{
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.test{
+    width: 250px;
+}

@@ -14,7 +14,7 @@ img {
     width: 300px;
 }
 .btn-add{
-    background-color: #5e9ebd;
+    background-color: #f6eff1; background: linear-gradient(to right, #b6b281, #b88b83); color: black;
     width: 20%;
     font-size: 20px;
     font-weight: bold;
