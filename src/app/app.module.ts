@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
 import { AdminComponent } from './Components/admin/admin.component';
-import { UserComponent } from './Components/user/user.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { LayoutComponent } from './Components/layout/layout.component';
 
@@ -31,13 +30,10 @@ import { AllMyOrderComponent } from './Components/all-my-order/all-my-order.comp
     AppComponent,
     LoginComponent,
     AdminComponent,
-    UserComponent,
     NavbarComponent,
     LayoutComponent,
-
     ProductComponent,
     AllProductsComponent,
-
     OrderItemComponent,
     SelectUserComponent,
     UOrderComponent,
@@ -47,7 +43,6 @@ import { AllMyOrderComponent } from './Components/all-my-order/all-my-order.comp
     SelectCategoryComponent,
     MyOrdersComponent,
     AllMyOrderComponent
-
   ],
   imports: [
     BrowserModule,

@@ -21,16 +21,13 @@ export class AllUsersComponent implements OnInit {
       name: new FormControl('', [Validators.required,Validators.pattern("[A-Za-z]{3,}")]),
       email:new FormControl("",[Validators.required,Validators.pattern("[^ @]*@[^ @]*")]),
       image:new FormControl("",Validators.required),
-      type:new FormControl("",Validators.required),
+      type:new FormControl(this.selectedType,Validators.required),
       imageName: new FormControl('', Validators.required),
       password: new FormControl('',[
         Validators.minLength(8),
         Validators.required]),
       repeatPassword: new FormControl('',Validators.required)
-    },{validators:this.samePassword});
-
-    console.log(this.addUserForm.controls);
-    
+    },{validators:this.samePassword}); 
    }
 
   ngOnInit(): void {
@@ -58,7 +55,10 @@ export class AllUsersComponent implements OnInit {
   }
  
   reset():void{
+    this.addUserForm.controls['image'].setValue("");
     this.addUserForm.reset();
+    console.log(this.addUserForm.controls['image'].value);
+    
   }
    
   edit(user: IUser):void{
@@ -78,12 +78,13 @@ export class AllUsersComponent implements OnInit {
     formData.append('email', this.addUserForm.get('email')?.value);
     formData.append('type', this.addUserForm.get('type')?.value);
     formData.append('password', this.addUserForm.get('password')?.value);
-    if(this.addUserForm.get('image')!.value !== ''){
+    if(this.addUserForm.get('image')!.value !== null && this.addUserForm.get('image')!.value !== ''){
     formData.append('image', this.addUserForm.get('image')?.value);
     }else{
     formData.append('imageUrl', this.updatesUser.image);
     }
     this.authServiceService.updateUser(formData, this.updatesUser._id);
+    console.log(this.addUserForm.get('image')?.value);
     this.reset();
   }
 

@@ -43,7 +43,6 @@ export class ProductComponent implements OnInit {
     }
   }
   submit():void{
-    // let data = {...this.productForm.value};
     let formData: FormData = new FormData();
     formData.append('name', this.productForm.get('name')?.value);
     formData.append('price', this.productForm.get('price')?.value);
@@ -71,13 +70,11 @@ export class ProductComponent implements OnInit {
     formData.append('name', this.productForm.get('name')?.value);
     formData.append('price', this.productForm.get('price')?.value);
     formData.append('categoryId', this.selectedCat);
-    if(this.productForm.get('image')!.value !== ''){
+    if(this.productForm.get('image')!.value !== '' && this.productForm.get('image')!.value !== null){
       formData.append('image', this.productForm.get('image')?.value);
-      
     }else{
       formData.append('imageUrl', this.updatedItem.image);
     }
-    // formData.forEach((k,v) =>{ console.log(v); console.log(k)})
     this.prodService.updateProduct(formData, this.updatedItem._id)
     this.reset();
   }
